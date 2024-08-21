@@ -36,6 +36,7 @@
             background: rgba(0, 0, 0, 0.7);
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         nav a {
@@ -49,6 +50,36 @@
 
         nav a:hover {
             background-color: #575757;
+        }
+
+        .dropdown {
+            display: inline-block;
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: #fff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #575757;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
         }
 
         .enroll-btn {
@@ -222,6 +253,78 @@
             const whatsappUrl = `https://api.whatsapp.com/send?phone=+917091254603&text=${encodeURIComponent(whatsappMessage)}`;
             window.open(whatsappUrl, '_blank');
         }
+
+        function changeLanguage(lang) {
+            const translations = {
+                en: {
+                    welcome: 'Welcome to Sanskar Classes',
+                    mission: 'Our Mission',
+                    missionText: 'At Sanskar Classes, we are committed to nurturing the potential of every student. Our mission is to provide high-quality education that fosters personal growth and academic success.',
+                    vision: 'Our Vision',
+                    visionText: 'We envision a future where every student has access to exceptional learning opportunities, empowering them to achieve their highest potential and make a positive impact on society.',
+                    values: 'Our Values',
+                    valuesText: 'We uphold values of integrity, excellence, and dedication in everything we do. Our goal is to create a supportive and inclusive environment where students can thrive.',
+                    foundational: 'Foundational Courses',
+                    foundationalText: 'Our foundational courses cover essential subjects, providing students with a strong base to build upon. We focus on core academic areas to ensure comprehensive understanding.',
+                    advanced: 'Advanced Courses',
+                    advancedText: 'For students seeking to deepen their knowledge, our advanced courses offer specialized instruction in various subjects. These courses are designed to challenge and inspire students.',
+                    extracurricular: 'Extracurricular Activities',
+                    extracurricularText: 'We offer a range of extracurricular activities that complement academic learning. From sports to arts, our activities help students develop skills and interests beyond the classroom.',
+                    address: 'Address',
+                    addressText: 'Bihar, Gopalganj, Near Kendriya Vidyalaya'
+                },
+                hi: {
+                    welcome: 'संस्कार कक्षाओं में आपका स्वागत है',
+                    mission: 'हमारा मिशन',
+                    missionText: 'संस्कार कक्षाओं में, हम हर छात्र की क्षमता को पोषित करने के लिए प्रतिबद्ध हैं। हमारा मिशन उच्च गुणवत्ता की शिक्षा प्रदान करना है जो व्यक्तिगत विकास और शैक्षिक सफलता को बढ़ावा देती है।',
+                    vision: 'हमारा दृष्टिकोण',
+                    visionText: 'हम एक भविष्य की कल्पना करते हैं जहां हर छात्र को असाधारण शिक्षा अवसर प्राप्त हो, जिससे उन्हें अपनी उच्चतम क्षमता प्राप्त करने और समाज पर सकारात्मक प्रभाव डालने के लिए सशक्त किया जा सके।',
+                    values: 'हमारे मूल्य',
+                    valuesText: 'हम हर काम में ईमानदारी, उत्कृष्टता, और समर्पण के मूल्यों को बनाए रखते हैं। हमारा लक्ष्य एक समर्थनकारी और समावेशी वातावरण बनाना है जहां छात्र विकसित हो सकें।',
+                    foundational: 'मूलभूत पाठ्यक्रम',
+                    foundationalText: 'हमारे मूलभूत पाठ्यक्रम आवश्यक विषयों को कवर करते हैं, जिससे छात्रों को एक मजबूत आधार मिलता है। हम मुख्य शैक्षिक क्षेत्रों पर ध्यान केंद्रित करते हैं ताकि व्यापक समझ सुनिश्चित हो सके।',
+                    advanced: 'उन्नत पाठ्यक्रम',
+                    advancedText: 'जो छात्र अपने ज्ञान को गहरा करना चाहते हैं, हमारे उन्नत पाठ्यक्रम विभिन्न विषयों में विशेष निर्देश प्रदान करते हैं। ये पाठ्यक्रम छात्रों को चुनौती देने और प्रेरित करने के लिए डिज़ाइन किए गए हैं।',
+                    extracurricular: 'अतिरिक्त गतिविधियाँ',
+                    extracurricularText: 'हम अतिरिक्त गतिविधियों की एक श्रृंखला प्रदान करते हैं जो शैक्षणिक अध्ययन को पूरा करती हैं। खेलों से लेकर कला तक, हमारी गतिविधियाँ छात्रों को कक्षा से परे कौशल और रुचियाँ विकसित करने में मदद करती हैं।',
+                    address: 'पता',
+                    addressText: 'बिहार, गोपालगंज, केन्द्रीय विद्यालय के पास'
+                },
+                ta: {
+                    welcome: 'அனுசரண வகுப்புகளில் உங்களை வரவேற்கிறோம்',
+                    mission: 'எங்கள் பணி',
+                    missionText: 'அனுசரண வகுப்புகளில், ஒவ்வொரு மாணவரின் திறனை ஊக்குவிக்க நாங்கள் உறுதிபடுள்ளோம். நாங்கள் வழங்கும் உயர்தர கல்வி தனிப்பட்ட வளர்ச்சி மற்றும் கல்வியியல் வெற்றியை ஊக்குவிக்கிறது.',
+                    vision: 'எங்கள் நோக்கம்',
+                    visionText: 'ஒவ்வொரு மாணவருக்கும் சிறந்த கல்வி வாய்ப்புகள் கிடைக்கும் ஒரு எதிர்காலத்தை நாங்கள் கற்பனை செய்கிறோம், இது அவர்களை அவர்களின் உயர் திறனை அடையவும் சமுதாயத்தில் நேர்மறை தாக்கத்தை ஏற்படுத்தவும் சக்தியூட்டுகிறது.',
+                    values: 'எங்கள் மதிப்புகள்',
+                    valuesText: 'நாங்கள் எங்கள் வேலைகளில் நியாயம், சிறந்த தரம் மற்றும் அர்ப்பணிப்பு மதிப்புகளைப் பேணுகிறோம். மாணவர்கள் நன்கு வளர்வதற்கான ஆதரவளிக்கும் மற்றும் நுகர்வுத்தன்மைமிக்க சூழலை உருவாக்க எங்கள் குறிக்கோள்.',
+                    foundational: 'அடிப்படை பாடங்கள்',
+                    foundationalText: 'எங்கள் அடிப்படை பாடங்கள் முக்கியமான பாடங்களைப் பற்றிய விடயங்களை உள்ளடக்கியது, இது மாணவர்களுக்கு உறுதியான அடிப்படையை வழங்குகிறது. நாங்கள் மையக் கல்வி பகுதிகளில் கவனம் செலுத்துகிறோம், இது விரிவான புரிதலை உறுதி செய்கிறது.',
+                    advanced: 'மேம்பட்ட பாடங்கள்',
+                    advancedText: 'மாணவர்கள் தங்களது அறிவை மேலும் மேம்படுத்த விரும்பும் பட்சத்தில், எங்கள் மேம்பட்ட பாடங்கள் பல்வேறு பாடங்களில் நிபுணத்துவ வழிகாட்டுதல்களை வழங்குகிறது. இந்த பாடங்கள் மாணவர்களை சவால்கள் மற்றும் ஊக்கங்களுடன் வடிவமைக்கப்பட்டுள்ளது.',
+                    extracurricular: 'அதிகாரம் நடவடிக்கைகள்',
+                    extracurricularText: 'முதற்கூறிய பாடங்களுக்கான வகுப்புகளை நாங்கள் வழங்குகிறோம். விளையாட்டுகளிலிருந்து கலைவாதிகளை வரை, எங்கள் நடவடிக்கைகள் மாணவர்களை வகுப்புக்கான திறன்கள் மற்றும் ஆர்வங்களை உருவாக்க உதவுகிறது.',
+                    address: 'முகவரி',
+                    addressText: 'பீகார், கோபால்கஞ்ச், கேந்திரிய வித்யாலயா அருகே'
+                }
+            };
+
+            document.getElementById('welcome').innerText = translations[lang].welcome;
+            document.getElementById('mission').innerText = translations[lang].mission;
+            document.getElementById('mission-text').innerText = translations[lang].missionText;
+            document.getElementById('vision').innerText = translations[lang].vision;
+            document.getElementById('vision-text').innerText = translations[lang].visionText;
+            document.getElementById('values').innerText = translations[lang].values;
+            document.getElementById('values-text').innerText = translations[lang].valuesText;
+            document.getElementById('foundational').innerText = translations[lang].foundational;
+            document.getElementById('foundational-text').innerText = translations[lang].foundationalText;
+            document.getElementById('advanced').innerText = translations[lang].advanced;
+            document.getElementById('advanced-text').innerText = translations[lang].advancedText;
+            document.getElementById('extracurricular').innerText = translations[lang].extracurricular;
+            document.getElementById('extracurricular-text').innerText = translations[lang].extracurricularText;
+            document.getElementById('address').innerText = translations[lang].address;
+            document.getElementById('address-text').innerText = translations[lang].addressText;
+        }
     </script>
 </head>
 
@@ -231,54 +334,60 @@
     </header>
 
     <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About Us</a>
-        <a href="#courses">Courses</a>
-        <a href="#address">Address</a>
+        <a href="#home" id="home-link">Home</a>
+        <a href="#about" id="about-link">About Us</a>
+        <a href="#courses" id="courses-link">Courses</a>
+        <a href="#address" id="address-link">Address</a>
+        <div class="dropdown">
+            <a href="#" class="dropbtn">Language</a>
+            <div class="dropdown-content">
+                <a href="#" onclick="changeLanguage('en')">English</a>
+                <a href="#" onclick="changeLanguage('hi')">Hindi</a>
+                <a href="#" onclick="changeLanguage('ta')">Tamil</a>
+            </div>
+        </div>
         <a href="#" class="enroll-btn" onclick="showRegistrationForm()">Enroll Now</a>
     </nav>
 
     <div id="main-content">
         <div class="main-content" id="home">
-            <h1>Welcome to Sanskar Classes</h1>
-            <p>Empowering students with knowledge for a brighter future</p>
+            <h1 id="welcome">Welcome to Sanskar Classes</h1>
+            <p id="description">Empowering students with knowledge for a brighter future</p>
 
             <div class="section" id="about">
-                <h2>About Us</h2>
+                <h2 id="mission">Our Mission</h2>
                 <div class="about-info">
-                    <h3>Our Mission</h3>
-                    <p>At Sanskar Classes, we are committed to nurturing the potential of every student. Our mission is to provide high-quality education that fosters personal growth and academic success.</p>
+                    <h3 id="mission-text">At Sanskar Classes, we are committed to nurturing the potential of every student. Our mission is to provide high-quality education that fosters personal growth and academic success.</h3>
 
-                    <h3>Our Vision</h3>
-                    <p>We envision a future where every student has access to exceptional learning opportunities, empowering them to achieve their highest potential and make a positive impact on society.</p>
+                    <h3 id="vision">Our Vision</h3>
+                    <p id="vision-text">We envision a future where every student has access to exceptional learning opportunities, empowering them to achieve their highest potential and make a positive impact on society.</p>
 
-                    <h3>Our Values</h3>
-                    <p>We uphold values of integrity, excellence, and dedication in everything we do. Our goal is to create a supportive and inclusive environment where students can thrive.</p>
+                    <h3 id="values">Our Values</h3>
+                    <p id="values-text">We uphold values of integrity, excellence, and dedication in everything we do. Our goal is to create a supportive and inclusive environment where students can thrive.</p>
                 </div>
             </div>
 
             <div class="section" id="courses">
-                <h2>Our Courses</h2>
+                <h2 id="foundational">Foundational Courses</h2>
                 <div class="courses-info">
-                    <h3>Foundational Courses</h3>
-                    <p>Our foundational courses cover essential subjects, providing students with a strong base to build upon. We focus on core academic areas to ensure comprehensive understanding.</p>
+                    <h3 id="foundational-text">Our foundational courses cover essential subjects, providing students with a strong base to build upon. We focus on core academic areas to ensure comprehensive understanding.</h3>
 
-                    <h3>Advanced Courses</h3>
-                    <p>For students seeking to deepen their knowledge, our advanced courses offer specialized instruction in various subjects. These courses are designed to challenge and inspire students.</p>
+                    <h3 id="advanced">Advanced Courses</h3>
+                    <p id="advanced-text">For students seeking to deepen their knowledge, our advanced courses offer specialized instruction in various subjects. These courses are designed to challenge and inspire students.</p>
 
-                    <h3>Extracurricular Activities</h3>
-                    <p>We offer a range of extracurricular activities that complement academic learning. From sports to arts, our activities help students develop skills and interests beyond the classroom.</p>
+                    <h3 id="extracurricular">Extracurricular Activities</h3>
+                    <p id="extracurricular-text">We offer a range of extracurricular activities that complement academic learning. From sports to arts, our activities help students develop skills and interests beyond the classroom.</p>
                 </div>
             </div>
 
             <div class="section" id="address">
-                <h2>Address</h2>
-                <p>Bihar, Gopalganj, Near Kendriya Vidyalaya</p>
+                <h2 id="address">Address</h2>
+                <p id="address-text">Bihar, Gopalganj, Near Kendriya Vidyalaya</p>
             </div>
         </div>
 
         <footer>
-            &copy; 2024 Sanskar Classes - Bihar, Gopalganj, Near Kendriya Vidyalaya | 
+            &copy; 2024 Sanskar Classes - Bihar, Gopalganj, Near Kendriya Vidyalaya | Contact: 123-456-7890
         </footer>
     </div>
 
